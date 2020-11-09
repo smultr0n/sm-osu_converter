@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.Scanner;
 
 public class OsuFile {
-    final String audioFileName;
-    final String title;
-    final String artist;
-    final String version; //Difficulty name
-    final double beatLength; //Length of a beat in milliseconds
+    private final String audioFileName;
+    private final String title;
+    private final String artist;
+    private final String version; //Difficulty name
+    private final double beatLength; //Length of a beat in milliseconds
 
     /**
      * A constructor for an OsuFile object
