@@ -8,11 +8,10 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String filename;
         while (true) { //Ensures that the program can keep going until the user wants to quit
-            System.out.println("Enter filename: ");
+            System.out.println("Enter filename (case-sensitive): ");
             while (true) {
                 try {
                     filename = in.nextLine();
-                    new Scanner(new File(filename));
                     if (SmParser.getBpm(filename) <= 0 || !filename.endsWith(".sm")) {
                         System.out.println("Valid '.sm' file not found, try again:");
                     } else {

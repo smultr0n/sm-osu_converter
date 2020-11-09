@@ -63,7 +63,7 @@ public class SmParser {
                 if (line.contains(",") | in.nextLine().contains(",")) { //Checks the current line and the line after for bpm changes
                     System.out.println("Simfile has invalid bpm and/or bpm changes.");
                 }
-                if (!line.contains(";")) { //To circumvent poor .sm formatting
+                else if (!line.contains(";")) { //To circumvent poor .sm formatting
                     return Double.parseDouble(line.substring(line.indexOf('=') + 1));
                 } else {
                     return Double.parseDouble(line.substring(line.indexOf('=') + 1, line.indexOf(';')));
