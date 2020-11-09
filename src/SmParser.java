@@ -190,7 +190,7 @@ public class SmParser {
                 if (diffAuthor.equals("")) {
                     diffAuthor = "Unkown";
                 }
-                String diffLine = Integer.toString(lineNumb) + 5;
+                String diffLine = Integer.toString(lineNumb + 5);
                 lineNumb += 4;
                 String[] difficulty = {diffType, diffAuthor, diffName, diffNumber, diffLine};
                 difficulties.add(difficulty);
