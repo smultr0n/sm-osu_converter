@@ -29,7 +29,7 @@ public class Main {
                 System.out.println(diffs.indexOf(diff) + 1 + ". " + diff[0] + " " + diff[2] + " " + diff[3] + " by " + diff[1]);
                 diffIndex++;
             }
-            int indexChoice = 0;
+            int indexChoice;
             while (true) {
                 try {
                     indexChoice = Integer.parseInt(in.nextLine());
@@ -73,7 +73,7 @@ public class Main {
      * @param osuFile  OsuFile object that contains metadata and misc data
      */
     public static void createFile(String osuNotes, OsuFile osuFile) {
-        String filename = osuFile.artist.toUpperCase() + " - " + osuFile.title.toUpperCase() + " [" + osuFile.version + "].osu";
+        String filename = osuFile.toOsuFileName();
         try (BufferedWriter out = new BufferedWriter(new FileWriter(filename))) {
             out.write(osuFile.toOsuFileFormat());
             out.write(osuNotes);

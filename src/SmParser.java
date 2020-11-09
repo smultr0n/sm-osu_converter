@@ -60,8 +60,11 @@ public class SmParser {
         while (in.hasNextLine()) {
             String line = in.nextLine();
             if (line.contains("#BPMS:")) {
-                if (line.contains(",") | in.nextLine().contains(",")) { //Checks the current line and the line after, should probably look into this
+                if (line.contains(",") | in.nextLine().contains(",")) { //Checks the current line and the line after for bpm changes
                     System.out.println("Simfile has invalid bpm and/or bpm changes.");
+                }
+                if (!line.contains(";")) { //To circumvent poor .sm formatting
+                    return Double.parseDouble(line.substring(line.indexOf('=') + 1));
                 } else {
                     return Double.parseDouble(line.substring(line.indexOf('=') + 1, line.indexOf(';')));
                 }

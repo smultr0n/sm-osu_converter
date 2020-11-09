@@ -6,16 +6,14 @@ public class OsuFile {
     final String title;
     final String artist;
     final String version; //Difficulty name
-
-    //TIMING POINTS
-    final double beatLength;
+    final double beatLength; //Length of a beat in milliseconds
 
     /**
      * A constructor for an OsuFile object
-     * @param songInfo Array containing a simfile's song information
-     * @param difficulty Array containing a simfile's specified difficulty information
-     * @param bpm A simfile's BPM
      *
+     * @param songInfo   Array containing a simfile's song information
+     * @param difficulty Array containing a simfile's specified difficulty information
+     * @param bpm        A simfile's BPM
      */
     public OsuFile(String[] songInfo, String[] difficulty, double bpm) {
         title = songInfo[0];
@@ -23,6 +21,10 @@ public class OsuFile {
         audioFileName = songInfo[2];
         version = difficulty[2] + " " + difficulty[3];
         beatLength = 60_000 / bpm;
+    }
+
+    public String toOsuFileName() {
+        return this.artist.toUpperCase() + " - " + this.title.toUpperCase() + " [" + this.version + "].osu";
     }
 
     /**
@@ -40,7 +42,7 @@ public class OsuFile {
             output += line + "\n";
             line = in.nextLine();
         }
-        output += "[TimingPoints]\n0,"+this.beatLength+",4,1,0,100,1,0\n\n[HitObjects]\n";
+        output += "[TimingPoints]\n0," + this.beatLength + ",4,1,0,100,1,0\n\n[HitObjects]\n";
         output = output.replace("AudioFilename:", "AudioFilename:" + this.audioFileName);
         output = output.replace("Title:", "Title:" + this.title);
         output = output.replace("Artist:", "Artist:" + this.artist);
