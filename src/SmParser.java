@@ -153,7 +153,7 @@ public class SmParser {
      * @return String of all notes as in an Osu format
      */
     public static String allMeasuresToOsuNotes(ArrayList<String> notes, double bpm, int offset) {
-        int count = 0;
+        int count = 0; //Counter telling measureNotes where to start appending notes
         int measure = 0;
         String output = "";
         int msPerMeasure = (int) Math.round((60_000 / bpm) * 4);
@@ -193,8 +193,8 @@ public class SmParser {
                 if (diffAuthor.equals("")) {
                     diffAuthor = "Unkown";
                 }
-                String diffLine = Integer.toString(lineNumb + 5);
-                lineNumb += 4;
+                String diffLine = Integer.toString(lineNumb + 5); //5 lines to skip over difficulty information and get acess to the note data right away
+                lineNumb += 4; //To count the lines including the difficulty information
                 String[] difficulty = {diffType, diffAuthor, diffName, diffNumber, diffLine};
                 difficulties.add(difficulty);
             }
