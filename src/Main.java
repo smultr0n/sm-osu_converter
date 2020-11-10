@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +8,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
         String filename;
+        System.out.println("sm-osu converter v.1");
+        System.out.println("====================");
         while (true) { //Ensures that the program can keep going until the user wants to quit
             System.out.println("Enter filename (case-sensitive): ");
             while (true) {
@@ -19,12 +22,14 @@ public class Main {
                     }
                 } catch (FileNotFoundException e) {
                     System.out.println("Valid '.sm' file not found, try again:");
+                } catch (NoSuchElementException e){ //EOF crash prevention
+                    System.exit(1);
                 }
             }
             ArrayList<String[]> diffs = SmParser.getDiff(filename);
             System.out.println("Select which difficulty you would like to convert:");
-            int diffIndex = 0;
-            for (String[] diff : diffs) {
+            int diffIndex = 0; //
+            for (String[] diff : diffs) { //Prints out all difficulties found in specified file
                 System.out.println(diffs.indexOf(diff) + 1 + ". " + diff[0] + " " + diff[2] + " " + diff[3] + " by " + diff[1]);
                 diffIndex++;
             }
@@ -48,18 +53,24 @@ public class Main {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Not a valid difficulty, try again:");
+                } catch (NoSuchElementException e){
+                    System.exit(1);
                 }
             }
             System.out.println("Would you like to convert another file? (y/n)");
             while (true) {
-                String choice = in.nextLine();
-                if (choice.equalsIgnoreCase("N")) {
-                    System.exit(0);
-                }
-                if (choice.equalsIgnoreCase("Y")) {
-                    break;
-                } else {
-                    System.out.println("Invalid input, try again:");
+                try {
+                    String choice = in.nextLine();
+                    if (choice.equalsIgnoreCase("N")) {
+                        System.exit(0);
+                    }
+                    if (choice.equalsIgnoreCase("Y")) {
+                        break;
+                    } else {
+                        System.out.println("Invalid input, try again:");
+                    }
+                } catch (NoSuchElementException e){
+                    System.exit(1);
                 }
             }
         }
