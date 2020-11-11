@@ -28,7 +28,7 @@ public class Main {
             }
             ArrayList<String[]> diffs = SmParser.getDiff(filename);
             System.out.println("Select which difficulty you would like to convert:");
-            int diffIndex = 0; //
+            int diffIndex = 0;
             for (String[] diff : diffs) { //Prints out all difficulties found in specified file
                 System.out.println(diffs.indexOf(diff) + 1 + ". " + diff[0] + " " + diff[2] + " " + diff[3] + " by " + diff[1]);
                 diffIndex++;
